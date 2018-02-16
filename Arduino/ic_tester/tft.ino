@@ -35,6 +35,9 @@ void startScreen()
   tft.setCursor(20, 220);
   tft.setTextColor(RED);  tft.setTextSize(2);
   tft.println("Touch anywhere to START");
+
+  leds[0] = CRGB(255,0,255); leds[1] = CRGB(255,0,255);
+  FastLED.show();
 }
 
 void modeScreen()
@@ -54,6 +57,9 @@ void modeScreen()
 
   buttons[1].initButton(&tft, 150, 180, 160, 40, BLACK, YELLOW, BLACK, "Manual", 4);
   buttons[1].drawButton();
+
+  leds[0] = CRGB(255, 0, 255); leds[1] = CRGB(255, 0, 255);
+  FastLED.show();
 }
 
 void autoScreen()
@@ -77,6 +83,9 @@ void autoScreen()
 
   buttons[1].initButton(&tft, 250, 180, 140, 40, WHITE, YELLOW, BLACK, "16 Pins", 3);
   buttons[1].drawButton();
+
+  leds[0] = CRGB(0, 0, 255); leds[1] = CRGB(0, 0, 255);
+  FastLED.show();
 }
 
 void autoSearchResult(int mode, String number = "", String name = "", int count = 0)
@@ -106,6 +115,9 @@ void autoSearchResult(int mode, String number = "", String name = "", int count 
     tft.setTextColor(WHITE); tft.setTextSize(2);
     tft.println(name);
     tft.println();
+
+    leds[0] = CRGB(0, 255, 0); leds[1] = CRGB(0, 255, 0);
+    FastLED.show();
   }
   else
   {
@@ -119,6 +131,9 @@ void autoSearchResult(int mode, String number = "", String name = "", int count 
       tft.setTextColor(RED);  tft.setTextSize(3);
       tft.print("NO MATCH FOUND");
       delay(500);
+
+      leds[0] = CRGB(255, 0, 0); leds[1] = CRGB(255, 0, 0);
+      FastLED.show();
     }
   }
   //*************************************************************
@@ -147,25 +162,38 @@ void searching(int i)
     tft.setTextColor(MAGENTA);
     tft.setCursor(70, 150);
     tft.println("Testing.");
+
+    leds[0] = CRGB(255, 0, 255); leds[1] = CRGB(255, 0, 255);
+    FastLED.show();
   }
   else if (i == 2)
   {
     tft.setTextColor(MAGENTA);
     tft.setCursor(70, 150);
     tft.println("Testing..");
+
+    leds[0] = CRGB(0, 0, 0); leds[1] = CRGB(0, 0, 0);
+    FastLED.show();
   }
   else if (i == 3)
   {
     tft.setTextColor(MAGENTA);
     tft.setCursor(70, 150);
     tft.println("Testing...");
+
+    leds[0] = CRGB(255, 0, 255); leds[1] = CRGB(255, 0, 255);
+    FastLED.show();
   }
   else if (i == -1)
   {
     tft.setTextColor(BLACK);
     tft.setCursor(70, 150);
     tft.println("Testing...");
+
+    leds[0] = CRGB(0, 0, 0); leds[1] = CRGB(0, 0, 0);
+    FastLED.show();
   }
+
 }
 
 void manualScreen()
@@ -188,6 +216,9 @@ void manualScreen()
 
   buttons[0].initButton(&tft, 200, 180, 200, 50, BLACK, BLUE, WHITE, "ENTER >", 4);
   buttons[0].drawButton();
+
+  leds[0] = CRGB(255, 255, 0); leds[1] = CRGB(255, 255, 0);
+  FastLED.show();
 }
 
 void manualSearchResult(String number, String name, int status)
@@ -229,10 +260,16 @@ void manualSearchResult(String number, String name, int status)
     switch (status)
     {
       case 0 : tft.setTextColor(RED); tft.setTextSize(3);
+        leds[0] = CRGB(255, 0, 0); leds[1] = CRGB(255, 0, 0);
+        FastLED.show();
         break;
       case 1 : tft.setTextColor(GREEN); tft.setTextSize(3);
+        leds[0] = CRGB(0, 255, 0); leds[1] = CRGB(0, 255, 0);
+        FastLED.show();
         break;
       case -1 : tft.setTextColor(MAGENTA); tft.setTextSize(3);
+        leds[0] = CRGB(255, 0, 255); leds[1] = CRGB(255, 0, 255);
+        FastLED.show();
         break;
     }
     tft.setCursor(0, 130);
@@ -243,6 +280,8 @@ void manualSearchResult(String number, String name, int status)
   {
     tft.setTextColor(RED);
     tft.println("IC NOT FOUND");
+    leds[0] = CRGB(0, 0, 0); leds[1] = CRGB(0, 0, 0);
+    FastLED.show();
   }
 
   tft.setCursor(40, 220);

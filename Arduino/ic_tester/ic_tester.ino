@@ -1,3 +1,14 @@
+//LED
+#include <FastLED.h>
+
+#define LED_PIN     46
+#define NUM_LEDS    2
+#define BRIGHTNESS  200
+#define LED_TYPE    WS2812B
+
+#define COLOR_ORDER GRB
+CRGB leds[NUM_LEDS];
+
 //TFT
 #include <Adafruit_GFX.h>    // Core graphics library
 #include <Adafruit_TFTLCD.h> // Hardware-specific library
@@ -70,11 +81,16 @@ void(* resetFunc) (void) = 0;
 void setup() {
   Serial.begin(9600);
 
+  delay( 1000 ); // power-up safety delay
+  FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
+  FastLED.setBrightness(  BRIGHTNESS );
+
   //TFT setup
   tft_init();
 
   //SD Card Setup
   SD_init();
+
 }
 
 void loop() {
