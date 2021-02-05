@@ -52,6 +52,8 @@ String getIC()
     pinMode(XM, OUTPUT);
     pinMode(YP, OUTPUT);
 
+    bool pressed = false;
+
     if (p.z > MINPRESSURE && p.z < MAXPRESSURE)
     {
       // scale from 0->1023 to tft.width
@@ -62,12 +64,14 @@ String getIC()
       p.x = p.x + p.y;
       p.y = p.x - p.y;
       p.x = p.x - p.y;
+
+      pressed = true;
     }
 
     // go thru all the buttons, checking if they were pressed
     for (uint8_t b = 0; b < 12; b++)
     {
-      if (buttons[b].contains(p.x - 8, p.y - 8))
+      if (buttons[b].contains(p.x - 8, p.y - 8) && pressed)
       {
         //Serial.print("Pressing: "); Serial.println(b);
         buttons[b].press(true);  // tell the button it is pressed
