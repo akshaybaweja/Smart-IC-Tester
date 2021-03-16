@@ -42,9 +42,8 @@ boolean testCase(String test, int pins)
   if (clkPin != -1)
   {
     //Clock Trigger
-    pinMode(clkPin, INPUT_PULLUP);
+    digitalWrite(clkPin, HIGH);
     delay(10);
-    pinMode(clkPin, OUTPUT);
     digitalWrite(clkPin, LOW);
   }
 
